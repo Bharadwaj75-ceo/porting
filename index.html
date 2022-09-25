@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang = " en " >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE-edge">
+    <meta name ="viewport" content="width=device-width,initial-scale=1.0">
+    <title>My Portfolio Website</title>
+    <link rel = "stylesheet" href = "style.css">
+    <script src="https://kit.fontawesome.com/79b1b1d805.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id = "header">
+    <div class = "container">
+        <nav>
+            <img src="logo1.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <h1>Hi, I am <br> Bharadwaj <span>Gundu</span> </h1>
+        </div>
+</div>
+</div>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="user1.png" alt="">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>To be professionally associated with an esteemed organization
+with an objective to accept challenges and work hard towards
+achieving goals of the organization.</p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Python</span></li>
+                        <li><span>MatLab</span></li>
+                    </ul>
+                </div>
+                <div class="tab-contents active-tab" id="education">
+                    <ul>
+                        <li><span>2019-current</span><br>Btech at Veltech University</li>
+                        <li><span>2017-2019</span><br>12th Class at Sri Gayatri College</li>
+                        <li><span>2016-2017</span><br>10th Class from Dr.KKR's Gowtham School</li>
+                    </ul>
+                </div>             
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!--- portfolio-->
+<div class="certifications">
+    <div class="container">
+        <h1 class="sub-title">Certifications</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="work-1.jpeg">
+                <div class="layer">
+                    <h3>Python</h3>
+                    <p>Python certification from Udemy</p>
+                </div>
+            </div>
+            <div class="work">
+                <img src="amcat.jpeg">
+                <div class="layer">
+                    <h3>Amcat</h3>
+                    <p>Amcat Accredited Certification</p>
+                </div>
+            </div>
+            <div class="work">
+                <img src="work-3.jpeg">
+                <div class="layer">
+                    <h3>Operating Systems</h3>
+                    <p>Coursera certificate powered by Google</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------contact------------>
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fas fa-paper-plane"></i>bharadwajjeevesh123@gmail.com</p>
+                <p><i class="fas fa-phone-square-alt"></i>9121629569</p>
+                <a href="my-cv.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var tablinks= document.getElementsByClassName("tab-links");
+    var tabcontents= document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+<script>
+    var sm =document.getElementById("sidemenu");
+    function openmenu(){
+        sm.style.right="0";
+    }
+    function closemenu(){
+        sm.style.right="-200px";
+    }
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxHDD3SjHyZgF3cCvXjIBoKOl4zIKnE1N8AhNMH-Bl5XglXgZ9IRkLp4_4eGQorg7jh/exec'
+    const form = document.forms['submit-to-google-sheet']
+  const msg=document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },3000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
